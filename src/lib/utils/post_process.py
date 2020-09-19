@@ -29,6 +29,7 @@ def generic_post_process(
     trans = get_affine_transform(
       c[i], s[i], 0, (w, h), inv=1).astype(np.float32)
     for j in range(len(dets['scores'][i])):
+      print(opt.out_thresh)
       if dets['scores'][i][j] < opt.out_thresh:
         break
       item = {}

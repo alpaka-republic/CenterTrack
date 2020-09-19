@@ -46,6 +46,7 @@ def demo(opt):
   out_name = opt.demo[opt.demo.rfind('/') + 1:]
   print('out_name', out_name)
   if opt.save_video:
+    print("save video1:")
     # fourcc = cv2.VideoWriter_fourcc(*'XVID')
     fourcc = cv2.VideoWriter_fourcc(*'H264')
     out = cv2.VideoWriter('../results/{}.mp4'.format(
@@ -77,7 +78,7 @@ def demo(opt):
       if cnt < opt.skip_first:
         continue
       
-      cv2.imshow('input', img)
+      # cv2.imshow('input', img)
 
       # track or detect the image.
       ret = detector.run(img)
@@ -94,6 +95,7 @@ def demo(opt):
 
       # save debug image to video
       if opt.save_video:
+        print("save video2:")
         out.write(ret['generic'])
         if not is_video:
           cv2.imwrite('../results/demo{}.jpg'.format(cnt), ret['generic'])

@@ -30,10 +30,15 @@ def main(opt):
   torch.backends.cudnn.benchmark = not opt.not_cuda_benchmark and not opt.test
   Dataset = get_dataset(opt.dataset)
   opt = opts().update_dataset_info_and_set_heads(opt, Dataset)
+  print('####### HERE ####')
   print(opt)
   if not opt.not_set_cuda_env:
     os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpus_str
-  opt.device = torch.device('cuda' if opt.gpus[0] >= 0 else 'cpu')
+  print(opt.gpus, opt.gpus_str)
+  print('####### HERE ####')
+  opt.device = torch.device('cuda' if opt.gpus[0] >= 0 else 'cpu') #TODO
+  # opt.gpus = [6,7]
+  # torch.cuda.set_device(7) #TODO
   logger = Logger(opt)
 
   print('Creating model...')
